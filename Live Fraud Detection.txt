@@ -1,0 +1,16 @@
+1) Fraud Transaction(High amount, strange location, new IP):
+
+curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d "{\"Transaction ID\": \"TX2001\", \"Timestamp\": \"2025-04-10T03:21:00Z\", \"Sender Account ID\": \"AC10001\", \"Receiver Account ID\": \"AC50001\", \"Amount\": 9500.0, \"Type\": \"transfer\", \"Device ID\": \"dev202\", \"IP Address\": \"101.203.50.17\", \"Location\": \"UnknownTown\", \"Account Balance\": 10500.0, \"User Device Recognition\": \"No\", \"Known Threat Flag\": \"Yes\", \"Login Location Match\": \"No\", \"Spending Pattern Deviation\": \"High\"}"
+
+2) Fraud Transaction(Low balance, mismatched location, flagged device):
+
+curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d "{\"Transaction ID\": \"TX2002\", \"Timestamp\": \"2025-04-10T14:30:00Z\", \"Sender Account ID\": \"AC10002\", \"Receiver Account ID\": \"AC50002\", \"Amount\": 4000.0, \"Type\": \"payment\", \"Device ID\": \"dev888\", \"IP Address\": \"43.19.21.11\", \"Location\": \"CyberCafeX\", \"Account Balance\": 1000.0, \"User Device Recognition\": \"No\", \"Known Threat Flag\": \"Yes\", \"Login Location Match\": \"No\", \"Spending Pattern Deviation\": \"Extreme\"}"
+
+
+3) Legitimate Transaction (Recognized user, private IP, typical pattern):
+
+curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d "{\"Transaction ID\": \"TX2003\", \"Timestamp\": \"2025-04-10T09:00:00Z\", \"Sender Account ID\": \"AC10003\", \"Receiver Account ID\": \"AC50003\", \"Amount\": 100.0, \"Type\": \"payment\", \"Device ID\": \"dev001\", \"IP Address\": \"192.168.1.5\", \"Location\": \"Home\", \"Account Balance\": 5000.0, \"User Device Recognition\": \"Yes\", \"Known Threat Flag\": \"No\", \"Login Location Match\": \"Yes\", \"Spending Pattern Deviation\": \"None\"}"
+
+4) 4. Legitimate Transaction (Business transfer during work hours):
+
+curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d "{\"Transaction ID\": \"TX2004\", \"Timestamp\": \"2025-04-10T11:45:00Z\", \"Sender Account ID\": \"AC10004\", \"Receiver Account ID\": \"AC50004\", \"Amount\": 250.0, \"Type\": \"transfer\", \"Device ID\": \"dev123\", \"IP Address\": \"10.0.0.3\", \"Location\": \"Office\", \"Account Balance\": 8000.0, \"User Device Recognition\": \"Yes\", \"Known Threat Flag\": \"No\", \"Login Location Match\": \"Yes\", \"Spending Pattern Deviation\": \"Low\"}"
